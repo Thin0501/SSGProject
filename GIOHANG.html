@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SO4ME</title>
+    <link rel="stylesheet" type="text/css" href="/resourse/css/GIOHANG.css">
+    <link rel=”stylesheet” href=”https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css”>
+</head>
+
+<body>
+    <header>
+        <a href="http://127.0.0.1:5500/DEADDOG.html#"><img class="logo" src="/resourse/img/background/615ce06e-79e3-451d-b607-be53f36158a2_200x200.png" alt="logo"></a>
+        <ul class="main-nav">
+            <!-- unordered list -->
+            <li><a href="http://127.0.0.1:5500/PRODUCT.html">PRODUCT</a></li>
+            <!-- list item -->
+            <li><a href="#">CART</a></li>
+            <li><a href="#">JOIN US</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </header>
+    <h2><i class="fas fa-shopping-cart"></i>SHOPPING CART</h2>
+    <div class="shopping-cart">
+        <div class="column-labels">
+            <label class="product-image"><strong>Hình ảnh</strong></label>
+            <label class="product-details"><strong>Sản phẩm</strong></label>
+            <label class="product-price"><strong>Đơn giá</strong></label>
+            <label class="product-quantity"><strong>Số lượng</strong></label>
+            <label class="product-removal"><strong>Thành tiền</strong></label>
+        </div>
+        <div class="product">
+            <div class="product-image">
+                <img src="https://media3.scdn.vn/img2/2018/8_2/MLiB39.jpg">
+            </div>
+            <div class="product-details">
+                <div class="product-title">*Name of product</div>
+                <p class="product-description">*Detail of product</p>
+            </div>
+            <div class="product-price">300000</div>
+            <div class="product-quantity">
+                <input type="number" value="2" min="1">
+            </div>
+            <div class="product-removal">
+                <button class="remove-product">Remove</button>
+            </div>
+            <div class="product-line-price">500000</div>
+        </div>
+
+        <div class="product">
+            <div class="product-image">
+                <img src="https://media3.scdn.vn/img3/2019/4_16/02wCbT.jpg">
+            </div>
+            <div class="product-details">
+                <div class="product-title">Name of product</div>
+                <p class="product-description">*Detail of product</p>
+            </div>
+            <div class="product-price">600000</div>
+            <div class="product-quantity">
+                <input type="number" value="1" min="1">
+            </div>
+            <div class="product-removal">
+                <button class="remove-product">Remove</button>
+            </div>
+            <div class="product-line-price">700000</div>
+        </div>
+
+        <div class="totals">
+            <div class="totals-item">
+                <label>Tổng tiền</label>
+                <div class="totals-value" id="cart-subtotal"></div>
+            </div>
+            <div class="totals-item">
+                <label>Phí (5%)</label>
+                <div class="totals-value" id="cart-tax"></div>
+            </div>
+            <div class="totals-item">
+                <label>Phí vận chuyển</label>
+                <div class="totals-value" id="cart-shipping"></div>
+            </div>
+            <div class="totals-item totals-item-total">
+                <label>Thành tiền</label>
+                <div class="totals-value" id="cart-total"></div>
+            </div>
+        </div>
+    </div>
+    <table>
+        <h3><strong>Customer Information</strong></h3>
+        <tr>
+            <p class="p-long">
+                Please enter an address to continue
+            </p>
+        </tr>
+        <tr>
+            <td height="20px"></td>
+        </tr>
+        <tr>
+            <td><label class="informations"><b>Full name</b></label></td>
+            <td><input type="text" maxlength="80" placeholder="Name" /></td>
+        </tr>
+        <tr>
+            <td><label class="informations"><b>Address</b></label></td>
+            <td><input type="text" maxlength="80" placeholder="Address" /></td>
+        </tr>
+        <tr>
+            <td><label class="informations"><b>Phone Number </b></label></td>
+            <td><input type="text" maxlength="15" placeholder="0123456789" /></td>
+        </tr>
+        <tr>
+            <td><label class="informations"><b>Gmail </b></label></td>
+            <td><input type="text" maxlength="80" placeholder="...@gmail.com" /></td>
+        </tr>
+        <tr>
+            <td><label class="informations"><b>Content </b></label></td>
+            <td><textarea cols="22" rows="8" placeholder="...@gmail.com"> </textarea></td>
+        </tr>
+    </table>
+    <button class="checkout">Thanh toán</button>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            /* Set rates + misc */
+            var taxRate = 0.05;
+            var shippingRate = 15.00;
+            var fadeTime = 300;
+
+
+            /* Assign actions */
+            $('.product-quantity input').change(function() {
+                updateQuantity(this);
+            });
+
+            $('.product-removal button').click(function() {
+                removeItem(this);
+            });
+
+
+            /* Recalculate cart */
+            function recalculateCart() {
+                var subtotal = 0;
+
+                /* Sum up row totals */
+                $('.product').each(function() {
+                    subtotal += parseFloat($(this).children('.product-line-price').text());
+                });
+
+                /* Calculate totals */
+                var tax = subtotal * taxRate;
+                var shipping = (subtotal > 0 ? shippingRate : 0);
+                var total = subtotal + tax + shipping;
+
+                /* Update totals display */
+                $('.totals-value').fadeOut(fadeTime, function() {
+                    $('#cart-subtotal').html(subtotal.toFixed(2));
+                    $('#cart-tax').html(tax.toFixed(2));
+                    $('#cart-shipping').html(shipping.toFixed(2));
+                    $('#cart-total').html(total.toFixed(2));
+                    if (total == 0) {
+                        $('.checkout').fadeOut(fadeTime);
+                    } else {
+                        $('.checkout').fadeIn(fadeTime);
+                    }
+                    $('.totals-value').fadeIn(fadeTime);
+                });
+            }
+
+
+            /* Update quantity */
+            function updateQuantity(quantityInput) {
+                /* Calculate line price */
+                var productRow = $(quantityInput).parent().parent();
+                var price = parseFloat(productRow.children('.product-price').text());
+                var quantity = $(quantityInput).val();
+                var linePrice = price * quantity;
+
+                /* Update line price display and recalc cart totals */
+                productRow.children('.product-line-price').each(function() {
+                    $(this).fadeOut(fadeTime, function() {
+                        $(this).text(linePrice.toFixed(2));
+                        recalculateCart();
+                        $(this).fadeIn(fadeTime);
+                    });
+                });
+            }
+
+
+            /* Remove item from cart */
+            function removeItem(removeButton) {
+                /* Remove row from DOM and recalc cart total */
+                var productRow = $(removeButton).parent().parent();
+                productRow.slideUp(fadeTime, function() {
+                    productRow.remove();
+                    recalculateCart();
+                });
+            }
+
+        });
+    </script>
+</body>
+
+</html>

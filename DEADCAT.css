@@ -1,0 +1,305 @@
+/* ---------------------------------------- */
+
+
+/* --------------DEFAULT SETUP--------------------- */
+
+
+/* ---------------------------------------- */
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    color: black;
+    background-color: #ffffff;
+    text-rendering: optimizeLegibility;
+    /* mac dinh la 16px */
+}
+
+
+/* ---------------------------------------- */
+
+
+/* ------------REUSABLE COMPONENT--------------------- */
+
+
+/* ---------------------------------------- */
+
+.clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.row {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+h1,
+h2 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 550%;
+    font-weight: 800;
+    word-spacing: 70px;
+    color: white;
+    line-height: 135%;
+    margin-bottom: 50px;
+}
+
+h2 {
+    color: white;
+    font-size: 300%;
+    font-weight: 900;
+    text-align: center;
+}
+
+h2:after {
+    content: " ";
+    display: block;
+    width: 400px;
+    height: 5px;
+    background-color: black;
+    margin: 0 auto;
+    margin-top: 1px;
+}
+
+.p-long {
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    width: 70%;
+    margin-left: 15%;
+    line-height: 140%;
+}
+
+
+/* ---------------------------------------- */
+
+
+/* ------------HEADER------------------------ */
+
+
+/* ---------------------------------------- */
+
+header {
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.85), rgba(255, 255, 255, 0.8)), url("../img/background/photo-1512436991641-6745cdb1723f.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    /* view hieght */
+    background-attachment: fixed;
+}
+
+.logo {
+    width: 110px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.main-nav {
+    float: right;
+    list-style: none;
+    margin-right: 15px;
+    margin-top: 200px;
+}
+
+.main-nav li {
+    margin-bottom: 140px;
+}
+
+.main-nav li a {
+    text-decoration: none;
+    color: white;
+    letter-spacing: 3px;
+    font-size: 220%;
+    font-weight: 100;
+    transition: border-bottom 0.2s;
+    padding: 3px 32px;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+    background-color: black;
+    border-bottom: 10px solid rgb(255, 255, 255);
+}
+
+.heading-main-box {
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    transform: translate(-45%, -50%);
+    width: 1140px;
+}
+
+
+/*------------------------------------------*/
+
+
+/*----------------sticky----------------*/
+
+
+/*------------------------------------------*/
+
+.sticky {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 900;
+    width: 100%;
+    height: 70px;
+}
+
+.sticky .logo {
+    width: 100px;
+    margin-top: 8px;
+}
+
+.sticky .main-nav {
+    margin-top: 32px;
+}
+
+.sticky li {
+    display: inline;
+    margin-right: 30px;
+}
+
+.sticky li a {
+    text-decoration: none;
+    color: white;
+    font-size: 150%;
+    font-weight: 700;
+}
+
+.sticky li a:hover,
+.sticky li a:active {
+    background-color: black;
+    border-bottom: 10px solid white;
+}
+
+
+/*-----------------------------------------*/
+
+
+/*----------ABOUT SECTION--------------------*/
+
+
+/*-----------------------------------------*/
+
+.about-picture {
+    position: relative;
+    margin-top: 100px;
+}
+
+.about-picture img {
+    width: 190%;
+    box-shadow: 0px 5px 15px 5px black;
+    transition: all .5s;
+    /* x-y-do mo-do phong rong-mau */
+    /*filter: brightness(55%) blur(2px);*/
+}
+
+.picture-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-65%, 100%);
+    opacity: 0;
+    transition: all .5s;
+}
+
+.about-picture:hover img,
+.about-picture:active img {
+    filter: brightness(55%) blur(2px);
+}
+
+.about-picture:hover .picture-title,
+.about-picture:active .picture-title {
+    transform: translate(-65%, -50%);
+    opacity: 1;
+}
+
+
+/*-----------------------------------------*/
+
+
+/*-------------PRODUCT SECTION-------------*/
+
+
+/*-----------------------------------------*/
+
+.products-section {
+    background-image: linear-gradient(45deg, rgba(10, 0, 0, 0.85), rgba(228, 17, 182, 0.8)), url('/resourse/img/background/wp1871619.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.products-section h2 {
+    margin-bottom: 60px;
+}
+
+.col-span-1 img {
+    border-radius: 10px;
+}
+
+.col-span-1 :hover,
+.col-span-1 :active {
+    filter: brightness(120%) blur(2px);
+}
+
+
+/*-----------------------------------------*/
+
+
+/*-------------ABOUT-SECTION-------------*/
+
+
+/*-----------------------------------------*/
+
+section {
+    padding: 50px;
+}
+
+.about-section {
+    background-image: linear-gradient(45deg, rgba(17, 0, 253, 0.801), rgba(255, 255, 255, 0.8)), url('/resourse/img/background/pexels-photo-1020315.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 50vh;
+}
+
+.information {
+    color: white;
+}
+
+
+/*-----------------------------------------*/
+
+
+/*-------------FOOTER-------------*/
+
+
+/*-----------------------------------------*/
+
+footer {
+    text-align: center;
+    background-color: orchid;
+    color: white;
+    padding: 20px;
+}
